@@ -1,5 +1,4 @@
 import { BrowserRouter, Route } from "react-router-dom";
-
 import MyLayOut from "../layout";
 
 import Login from "../pages/login";

@@ -5,7 +5,7 @@ import {
   LaptopOutlined,
   NotificationOutlined,
 } from "@ant-design/icons";
-import { createBrowserHistory } from "history";
+// import { createBrowserHistory } from "history";
 
 import AppRouterComponent from "./routes/app_routes";
 import { Link } from "react-router-dom";
@@ -13,8 +13,8 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const MyLayOut = () => {
-  const base = "app/";
-  const history = createBrowserHistory();
+  // const base = "app/";
+  // const history = createBrowserHistory();
   return (
     <Layout style={{ height: "100%" }}>
       <Header className="header">
@@ -81,7 +81,7 @@ const MyLayOut = () => {
               minHeight: 280,
             }}
           >
-            <AppRouterComponent></AppRouterComponent>
+            <AppRouterComponent parent={"/app"}></AppRouterComponent>
           </Content>
         </Layout>
       </Layout>
