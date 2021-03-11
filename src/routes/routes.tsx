@@ -7,7 +7,7 @@ export default function RouterComponent() {
   return (
     <BrowserRouter>
       <Switch>
-        <AuthRoute path="/app" component={MyLayOut} />
+        <AuthRoute path="/app" component={MyLayOut} auth={["login"]} />
         <Route path="/login" component={Login} exact />
         <Redirect to="/login" />
       </Switch>
