@@ -13,7 +13,7 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const MyLayOut = () => {
-  // const base = "app/";
+  const base = "/app";
   // const history = createBrowserHistory();
   return (
     <Layout style={{ height: "100%" }}>
@@ -40,29 +40,29 @@ const MyLayOut = () => {
           >
             <SubMenu key="container" icon={<UserOutlined />} title="容器">
               <Menu.Item key="container_create">
-                <Link to={`container_create`}>创建容器</Link>
+                <Link to={`${base}/container_create`}>创建容器</Link>
               </Menu.Item>
               <Menu.Item key="container_manage">
-                <Link to={`container_manage`}>管理容器</Link>
+                <Link to={`${base}/container_manage`}>管理容器</Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu key="image" icon={<LaptopOutlined />} title="镜像">
               <Menu.Item key="image_create">
-                <Link to={`image_create`}>创建镜像</Link>
+                <Link to={`${base}/image_create`}>创建镜像</Link>
               </Menu.Item>
               <Menu.Item key="image_manage">
-                <Link to={`image_manage`}>管理镜像</Link>
+                <Link to={`${base}/image_manage`}>管理镜像</Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu key="group" icon={<NotificationOutlined />} title="组织">
               <Menu.Item key="group_create">
-                <Link to={`group_create`}>创建组织</Link>
+                <Link to={`${base}/group_create`}>创建组织</Link>
               </Menu.Item>
               <Menu.Item key="group_manage">
-                <Link to={`group_manage`}>管理组织</Link>
+                <Link to={`${base}/group_manage`}>管理组织</Link>
               </Menu.Item>
               <Menu.Item key="group_join">
-                <Link to={`group_manage`}>加入组织</Link>
+                <Link to={`${base}/group_manage`}>加入组织</Link>
               </Menu.Item>
             </SubMenu>
           </Menu>

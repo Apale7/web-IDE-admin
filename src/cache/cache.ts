@@ -51,4 +51,23 @@ function getAccessToken() {
   return accessToken;
 }
 
-export { storeLanguage, getLanguage, storeCode, getCode, setTokens, getTokens, getAccessToken };
+function getAuth() {
+  if (get("auths") === "") return [];
+  return JSON.parse(get("auths"));
+}
+
+function setAuth(auths: string[]) {
+  set("auths", JSON.stringify(auths));
+}
+
+export {
+  storeLanguage,
+  getLanguage,
+  storeCode,
+  getCode,
+  setTokens,
+  getTokens,
+  getAccessToken,
+  getAuth,
+  setAuth,
+};

@@ -2,10 +2,11 @@ import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import "./login.css";
 import axios from "../axios/axiosSetting";
-import { getTokens, setTokens } from "../cache/cache";
+import { getTokens, setAuth, setTokens } from "../cache/cache";
 const Login = () => {
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
+    setAuth(["image"]);
     axios
       .post("/api/user/login", {
         username: values.username,
@@ -16,7 +17,7 @@ const Login = () => {
           console.log("服务器错误");
           return;
         }
-        
+
         if (res.data.status_code !== 0) {
           console.log("用户名或密码错误");
           return;

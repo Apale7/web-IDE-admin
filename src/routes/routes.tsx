@@ -1,12 +1,16 @@
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import AuthRoute from "../components/auth_route/auth_route";
 import MyLayOut from "../layout";
 
 import Login from "../pages/login";
 export default function RouterComponent() {
   return (
     <BrowserRouter>
-      <Route path="/app" component={MyLayOut} />
-      <Route path="/login" component={Login} exact />
+      <Switch>
+        <AuthRoute path="/app" component={MyLayOut} />
+        <Route path="/login" component={Login} exact />
+        <Redirect to="/login" />
+      </Switch>
     </BrowserRouter>
   );
 }
