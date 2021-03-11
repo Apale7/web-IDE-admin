@@ -4,10 +4,17 @@ import { routeInfo } from "../../routes";
 import { getAuth } from "../../auth/auth";
 export default function AuthRoute(props: routeInfo) {
   const [auths, setAuths] = useState(getAuth());
-
-  if (!auths.includes("image")) {
-    return <Redirect to="/login" />;
+  if (props.auth) {
+    if (!auths.includes("login")) {
+      return <Redirect to="/login" />;
+    }
+    for (let i = 0; i < props.auth.length; i++) {
+      const element = props.auth[i];
+      if (!auths.includes(element))
+        return <h1 style={{ color: "red", fontSize: "25px" }}>无{element}权限</h1>;
+    }
   }
+
   return (
     <Route path={props.path} exact={props.exact} component={props.component} />
   );

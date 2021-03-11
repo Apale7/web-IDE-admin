@@ -1,44 +1,23 @@
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import "./login.css";
-import axios from "../axios/axiosSetting";
-import { getTokens, setAuth, setTokens } from "../cache/cache";
-const Login = () => {
+import { login } from "../api/login";
+import { withRouter } from "react-router";
+const Login = (props: any) => {
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
-    setAuth(["image"]);
-    axios
-      .post("/api/user/login", {
-        username: values.username,
-        password: values.password,
-      })
-      .then((res) => {
-        if (!res) {
-          console.log("服务器错误");
-          return;
-        }
 
-        if (res.data.status_code !== 0) {
-          console.log("用户名或密码错误");
-          return;
-        }
-        console.log(res);
-
-        setTokens(
-          res.data.data.access_token,
-          res.data.data.access_exp,
-          res.data.data.refresh_token,
-          res.data.data.refresh_exp
-        );
-
-        console.log(
-          `exp after ${
-            (res.data.data.access_exp -
-              Date.parse(new Date().toString()) / 1000) /
-            60
-          } minutes`
-        );
-      });
+    login({
+      username: values.username,
+      password: values.password,
+    }).then((res) => {
+      console.log(res);
+      if (!res.result) {
+        // todo 登录页面提示
+        return;
+      }
+      props.history.push("/app");
+    });
   };
 
   return (
@@ -92,4 +71,4 @@ const Login = () => {
     </div>
   );
 };
-export default Login;
+export default withRouter(Login);

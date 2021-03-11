@@ -53,7 +53,9 @@ function getAccessToken() {
 
 function getAuth() {
   if (get("auths") === "") return [];
-  return JSON.parse(get("auths"));
+  let auths: string[];
+  auths = JSON.parse(get("auths"));
+  return auths;
 }
 
 function setAuth(auths: string[]) {
