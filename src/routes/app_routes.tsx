@@ -1,6 +1,7 @@
 import { Switch } from "react-router";
 import AuthRoute from "../components/auth_route/auth_route";
 import ContainerCreate from "../components/container/create";
+import ContainerManage from "../components/container/manage";
 export default function AppRouterComponent(props: any) {
   return (
     <Switch>
@@ -11,9 +12,7 @@ export default function AppRouterComponent(props: any) {
       ></AuthRoute>
       <AuthRoute
         path={`/app/container_manage`}
-        component={() => {
-          return <div>this is container_manage</div>;
-        }}
+        component={ContainerManage}
         auth={["container"]}
       ></AuthRoute>
       <AuthRoute
