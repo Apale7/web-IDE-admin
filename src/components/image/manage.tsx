@@ -1,20 +1,12 @@
-import { Table, Tag, Space } from "antd";
+import { Table, Space } from "antd";
 import { useEffect, useState } from "react";
-import { getContainer } from "../../api/container";
-import { container } from "../../api/container";
+
 const { Column } = Table;
 
-let data: container[] = [];
+let data:any = []
 
-export default function ContainerManage() {
-  const [data, setData] = useState<container[]>([]);
-  useEffect(() => {
-    const initContainerList = async () => {
-      const containers = await getContainer(2);
-      setData(containers);
-    };
-    initContainerList();
-  }, []);
+export default function ImageManage() {
+  
   return (
     <Table dataSource={data} pagination={{ defaultPageSize: 5 }}>
       <Column title="ID" dataIndex="id" key="id" />

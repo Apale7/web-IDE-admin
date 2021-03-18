@@ -2,6 +2,11 @@ import { Switch } from "react-router";
 import AuthRoute from "../components/auth_route/auth_route";
 import ContainerCreate from "../components/container/create";
 import ContainerManage from "../components/container/manage";
+import GroupCreate from "../components/group/create";
+import GroupJoin from "../components/group/join";
+import GroupManage from "../components/group/manage";
+import ImageCreate from "../components/image/create";
+import ImageManage from "../components/image/manage";
 export default function AppRouterComponent(props: any) {
   return (
     <Switch>
@@ -17,37 +22,27 @@ export default function AppRouterComponent(props: any) {
       ></AuthRoute>
       <AuthRoute
         path={`/app/image_create`}
-        component={() => {
-          return <div>this is image_create</div>;
-        }}
+        component={ImageCreate}
         auth={["image"]}
       ></AuthRoute>
       <AuthRoute
         path={`/app/image_manage`}
-        component={() => {
-          return <div>this is image_manage</div>;
-        }}
+        component={ImageManage}
         auth={["image"]}
       ></AuthRoute>
       <AuthRoute
         path={`/app/group_create`}
-        component={() => {
-          return <div>this is group_create</div>;
-        }}
+        component={GroupCreate}
         auth={["group", "group_admin"]}
       ></AuthRoute>
       <AuthRoute
         path={`/app/group_manage`}
-        component={() => {
-          return <div>this is group_manage</div>;
-        }}
+        component={GroupManage}
         auth={["group", "group_admin"]}
       ></AuthRoute>
       <AuthRoute
         path={`/app/group_join`}
-        component={() => {
-          return <div>this is group_join</div>;
-        }}
+        component={GroupJoin}
         auth={["group"]}
       ></AuthRoute>
     </Switch>
