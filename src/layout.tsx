@@ -11,6 +11,7 @@ import AppRouterComponent from "./routes/app_routes";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { getAuth } from "./auth/auth";
+import { hasAuths } from "./components/auth_route/auth_route";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -41,7 +42,7 @@ const MyLayOut = () => {
             defaultOpenKeys={["container", "image", "group"]}
             style={{ height: "100%", borderRight: 0 }}
           >
-            {auths.includes("container") && (
+            {hasAuths(auths, "container") && (
               <SubMenu key="container" icon={<UserOutlined />} title="容器">
                 <Menu.Item key="container_create">
                   <Link to={`${base}/container_create`}>创建容器</Link>
@@ -51,7 +52,7 @@ const MyLayOut = () => {
                 </Menu.Item>
               </SubMenu>
             )}
-            {auths.includes("image") && (
+            {hasAuths(auths, "image") && (
               <SubMenu key="image" icon={<LaptopOutlined />} title="镜像">
                 <Menu.Item key="image_create">
                   <Link to={`${base}/image_create`}>创建镜像</Link>
@@ -61,14 +62,14 @@ const MyLayOut = () => {
                 </Menu.Item>
               </SubMenu>
             )}
-            {auths.includes("group") && (
+            {hasAuths(auths, "group") && (
               <SubMenu key="group" icon={<NotificationOutlined />} title="组织">
-                {auths.includes("group_admin") && (
+                {hasAuths(auths, "group_admin") && (
                   <Menu.Item key="group_create">
                     <Link to={`${base}/group_create`}>创建组织</Link>
                   </Menu.Item>
                 )}
-                {auths.includes("group_admin") && (
+                {hasAuths(auths, "group_admin") && (
                   <Menu.Item key="group_manage">
                     <Link to={`${base}/group_manage`}>管理组织</Link>
                   </Menu.Item>

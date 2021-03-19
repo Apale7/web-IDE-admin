@@ -62,6 +62,14 @@ function setAuth(auths: string[]) {
   set("auths", JSON.stringify(auths));
 }
 
+function setUserID(userID: number) {
+  set("user_id", userID.toString());
+}
+
+function getUserID() {
+  return Number(get("user_id"))
+}
+
 export {
   storeLanguage,
   getLanguage,
@@ -72,4 +80,6 @@ export {
   getAccessToken,
   getAuth,
   setAuth,
+  setUserID,
+  getUserID
 };

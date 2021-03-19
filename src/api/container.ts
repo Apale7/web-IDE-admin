@@ -9,8 +9,20 @@ export interface container {
   status: number;
 }
 
+interface createContainerReq {
+  user_id: number;
+  image_id: string;
+  container_name: string;
+  username?: string;
+}
+
+interface deleteContainerReq {
+  user_id: number;
+  container_id: string;
+}
+
 const getContainer = async (user_id?: number, container_id?: string) => {
-  const res = await axios.get("/api/container/get_containers", {
+  const res = await axios.get("/api/container/get", {
     params: {
       user_id: user_id,
       container_id: container_id,
@@ -23,14 +35,26 @@ const getContainer = async (user_id?: number, container_id?: string) => {
     const e = res.data.data.containers[i];
     containers.push({
       key: String(i),
-      id: e.id.substr(0, 7) + "...",
-      name: e.name.substr(0, 20) + (e.name.length > 20 ? "..." : ""),
+      id: e.id,
+      name: e.name,
       created: new Date(e.created * 1000).toLocaleString(),
-      image: e.image.split(":")[1].substr(0, 7) + "...",
+      image: e.image,
       status: e.status,
     });
   }
   return containers;
 };
 
-export { getContainer };
+const deleteContainer = async (req: deleteContainerReq) => {
+  const res = await axios.post("/api/container/delete", req);
+  if (!res || !res.data) return false;
+  return res.data.status_code === 0;
+};
+
+const createContainer = async (req: createContainerReq) => {
+  const res = await axios.post("/api/container/create", req);
+  if (!res || !res.data) return false;
+  return res.data.status_code === 0;
+};
+
+export { getContainer, deleteContainer, createContainer };

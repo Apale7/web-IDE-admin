@@ -1,27 +1,53 @@
-import { Table, Space } from "antd";
+import { Table, Space, Popconfirm } from "antd";
 import { useEffect, useState } from "react";
+import { getImage, image, deleteImage } from "../../api/image";
+import { getUserID } from "../../cache/cache";
 
 const { Column } = Table;
 
-let data:any = []
+let data: any = [];
 
 export default function ImageManage() {
-  
+  const [images, setImages] = useState<image[]>([]);
+  useEffect(() => {
+    const initImageList = async () => {
+      const images = await getImage({ userID: getUserID(), isAdmin: true });
+      setImages(images);
+    };
+    initImageList();
+  }, [images.length]);
+
+  const onDelete = (imageID: string) => {
+    const success = deleteImage({
+      user_id: getUserID(),
+      image_id: imageID,
+    });
+    if (!success) {
+      alert("删除容器失败");
+    } else {
+      setImages([]); //修改containers通知react重新渲染
+    }
+  };
+
   return (
-    <Table dataSource={data} pagination={{ defaultPageSize: 5 }}>
-      <Column title="ID" dataIndex="id" key="id" />
-      <Column title="名称" dataIndex="name" key="name" />
+    <Table dataSource={images} pagination={{ defaultPageSize: 5 }}>
+      <Column title="ID" dataIndex="id" key="id" ellipsis={true} />
+      <Column title="仓库标签" dataIndex="repoTags" key="repoTags" />
       <Column title="创建时间" dataIndex="created" />
-      <Column title="依赖镜像" dataIndex="image" key="image_id" />
-      <Column title="状态" dataIndex="status" key="status" />
+      <Column title="大小(MB)" dataIndex="size" key="size" />
+      <Column title="创建者" dataIndex="author" key="author" />
 
       <Column
         title="Action"
         key="action"
         render={(text, record: any) => (
           <Space size="middle">
-            <a>Invite {record.lastName}</a>
-            <a>Delete</a>
+            <Popconfirm
+              title="Sure to delete?"
+              onConfirm={() => onDelete(record.id)}
+            >
+              <a>Delete</a>
+            </Popconfirm>
           </Space>
         )}
       />
