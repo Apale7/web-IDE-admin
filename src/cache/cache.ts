@@ -32,6 +32,8 @@ function setTokens(
   refreshToken: string,
   refreshExp: number
 ) {
+  // console.log('setTokens called');
+  
   set("access_token", accessToken);
   set("refresh_token", refreshToken);
   set("refresh_exp", String(refreshExp));

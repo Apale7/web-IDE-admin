@@ -28,8 +28,9 @@ const getContainer = async (user_id?: number, container_id?: string) => {
       container_id: container_id,
     },
   });
-
-  if (!res) return [];
+  console.log('res',res);
+  
+  if (!res || !res.data.data.containers) return [];
   let containers: container[] = [];
   for (let i = 0; i < res.data.data.containers.length; i++) {
     const e = res.data.data.containers[i];

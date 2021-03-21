@@ -24,7 +24,7 @@ const getImage = async (req: getImageReqParams) => {
     },
   });
 
-  if (!res) return [];
+  if (!res || !res.data.data.images) return [];
   const images: image[] = [];
   for (let i = 0; i < res.data.data.images.length; i++) {
     const e = res.data.data.images[i];
@@ -43,8 +43,16 @@ const getImage = async (req: getImageReqParams) => {
 };
 
 interface createImageReq {
-  dockerfile: string;
+  type: number;
   user_id: number;
+  dockerfile?: string;
+
+  respositry_url?: string;
+  tag?: string;
+  username?: string;
+  password?: string;
+
+  image_url?: string;
 }
 
 const createImage = async (req: createImageReq) => {

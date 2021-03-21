@@ -1,4 +1,4 @@
-import { Table, Space, Popconfirm } from "antd";
+import { Table, Space, Popconfirm, message } from "antd";
 import { useEffect, useState } from "react";
 import { getImage, image, deleteImage } from "../../api/image";
 import { getUserID } from "../../cache/cache";
@@ -23,14 +23,15 @@ export default function ImageManage() {
       image_id: imageID,
     });
     if (!success) {
-      alert("删除容器失败");
+      message.error("删除镜像失败");
     } else {
+      message.success("删除镜像成功")
       setImages([]); //修改containers通知react重新渲染
     }
   };
 
   return (
-    <Table dataSource={images} pagination={{ defaultPageSize: 5 }}>
+    <Table dataSource={images} pagination={{ defaultPageSize: 8 }}>
       <Column title="ID" dataIndex="id" key="id" ellipsis={true} />
       <Column title="仓库标签" dataIndex="repoTags" key="repoTags" />
       <Column title="创建时间" dataIndex="created" />

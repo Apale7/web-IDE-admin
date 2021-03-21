@@ -25,12 +25,12 @@ export default function ContainerManage() {
     if (!success) {
       alert("删除容器失败");
     } else {
-      setContainers([])//修改containers通知react重新渲染
+      setContainers([]); //修改containers通知react重新渲染
     }
   };
 
   return (
-    <Table dataSource={containers} pagination={{ defaultPageSize: 5 }}>
+    <Table dataSource={containers} pagination={{ defaultPageSize: 8 }}>
       <Column title="ID" dataIndex="id" key="id" ellipsis={true} />
       <Column title="名称" dataIndex="name" key="name" ellipsis={true} />
       <Column title="创建时间" dataIndex="created" />

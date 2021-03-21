@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Redirect, Route } from "react-router";
+import { getAuth } from "../../cache/cache";
 import { routeInfo } from "../../routes";
-import { getAuth } from "../../auth/auth";
 export default function AuthRoute(props: routeInfo) {
   const [auths, setAuths] = useState(getAuth());
   if (props.auth && !auths.includes("super")) {

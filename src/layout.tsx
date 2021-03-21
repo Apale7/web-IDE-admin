@@ -10,7 +10,7 @@ import {
 import AppRouterComponent from "./routes/app_routes";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { getAuth } from "./auth/auth";
+import { getAuth } from "./cache/cache";
 import { hasAuths } from "./components/auth_route/auth_route";
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -22,8 +22,8 @@ const MyLayOut = () => {
   return (
     <Layout style={{ height: "100%" }}>
       <Header className="header">
-        <div className="logo" />
-        <Menu
+        {/* <div className="logo" /> */}
+        {/* <Menu
           theme="dark"
           mode="horizontal"
           // defaultSelectedKeys={["2"]}
@@ -31,7 +31,7 @@ const MyLayOut = () => {
           <Menu.Item key="1">nav 1</Menu.Item>
           <Menu.Item key="2">nav 2</Menu.Item>
           <Menu.Item key="3">nav 3</Menu.Item>
-        </Menu>
+        </Menu> */}
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">
@@ -74,19 +74,15 @@ const MyLayOut = () => {
                     <Link to={`${base}/group_manage`}>管理组织</Link>
                   </Menu.Item>
                 )}
-                <Menu.Item key="group_join">
-                  <Link to={`${base}/group_join`}>加入组织</Link>
+                <Menu.Item key="group_mine">
+                  <Link to={`${base}/group_mine`}>我的组织</Link>
                 </Menu.Item>
               </SubMenu>
             )}
           </Menu>
         </Sider>
         <Layout style={{ padding: "0 24px 24px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
+          <div style={{ margin: "16px 0" }}></div>
           <Content
             className="site-layout-background"
             style={{

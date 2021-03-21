@@ -3,7 +3,7 @@ import AuthRoute from "../components/auth_route/auth_route";
 import ContainerCreate from "../components/container/create";
 import ContainerManage from "../components/container/manage";
 import GroupCreate from "../components/group/create";
-import GroupJoin from "../components/group/join";
+import GroupMine from "../components/group/mine";
 import GroupManage from "../components/group/manage";
 import ImageCreate from "../components/image/create";
 import ImageManage from "../components/image/manage";
@@ -41,8 +41,8 @@ export default function AppRouterComponent(props: any) {
         auth={["group", "group_admin"]}
       ></AuthRoute>
       <AuthRoute
-        path={`/app/group_join`}
-        component={GroupJoin}
+        path={`/app/group_mine`}
+        component={GroupMine}
         auth={["group"]}
       ></AuthRoute>
     </Switch>

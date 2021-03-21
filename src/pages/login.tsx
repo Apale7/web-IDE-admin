@@ -1,23 +1,30 @@
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Checkbox, message } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import "./login.css";
 import { login } from "../api/login";
 import { withRouter } from "react-router";
+import { useEffect } from "react";
+import { isLogin } from "../auth/login";
 const Login = (props: any) => {
-  const onFinish = (values: any) => {
+  useEffect(() => {
+    if (isLogin()) {
+      props.history.push("/app");
+    }
+  }, []);
+  const onFinish = async (values: any) => {
     console.log("Received values of form: ", values);
 
-    login({
+    const res = await login({
       username: values.username,
       password: values.password,
-    }).then((res) => {
-      console.log(res);
-      if (!res.result) {
-        // todo 登录页面提示
-        return;
-      }
-      props.history.push("/app");
     });
+
+    if (!res.result) {
+      message.error(res.message);
+      return;
+    }
+    message.success("登录成功");
+    props.history.push("/app");
   };
 
   return (

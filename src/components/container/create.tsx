@@ -1,4 +1,4 @@
-import { Form, Input, Button, Select, Checkbox } from "antd";
+import { Form, Input, Button, message } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import { createContainer } from "../../api/container";
 import { getUserID } from "../../cache/cache";
@@ -15,7 +15,8 @@ export default function ContainerCreate() {
   const onFinish = async (values: any) => {
     const user_id = getUserID();
     const success = await createContainer({ ...values, user_id: user_id });
-    console.log(success);
+    if (success) message.success("创建容器成功！");
+    else message.error("创建容器失败！");
   };
 
   const onFinishFailed = (errorInfo: any) => {
